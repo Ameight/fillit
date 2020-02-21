@@ -6,7 +6,7 @@
 /*   By: ejuana <ejuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 18:51:36 by ejuana            #+#    #+#             */
-/*   Updated: 2020/02/20 19:09:59 by ejuana           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:27:15 by ejuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,16 @@ int		check_counts(char *str, int count)
 			return (3);
 		i++;
 	}
-	if (count == 21 && str[20] != '\n')	
+	if (count == 21 && str[20] != '\n')
 		return (4);
 	if (!check_connection(str))
 		return (5);
+	if (count == 21 && str[20] == '\n')
+		return (-1);
 	return (0);
 }
 
-t_list	*read_tetri(int fd)
+t_list	*read_tetri(int fd, int flag)
 {
 	char	*buf;
 	int		count;
@@ -126,8 +128,8 @@ t_list	*read_tetri(int fd)
 	cur = 'A';
 	while ((count = read(fd, buf, 21)) >= 20)
 	{
-		if (check_counts(buf, count) != 0
-				|| (tetris = get_piece(buf, cur++)) == NULL)
+		if (((flag = check_counts(buf, count)) != 0 && flag != -1)
+			|| (tetris = get_piece(buf, cur++)) == NULL)
 		{
 			ft_memdel((void **)&buf);
 			return (free_list(list));
@@ -136,7 +138,7 @@ t_list	*read_tetri(int fd)
 		ft_memdel((void **)&tetris);
 	}
 	ft_memdel((void **)&buf);
-	if (count != 0)
+	if (count != 0 || flag == -1)
 		return (free_list(list));
 	ft_lstrev(&list);
 	return (list);

@@ -6,60 +6,104 @@
 #    By: ejuana <ejuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/19 18:14:01 by ejuana            #+#    #+#              #
-#    Updated: 2020/02/20 16:56:01 by ejuana           ###   ########.fr        #
+#    Updated: 2020/02/22 02:00:58 by ejuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= fillit 
+NAME = fillit
+LIBFT = libft.a
 
+CUR_DIR = $(shell pwd)
+LIB_DIR = $(CUR_DIR)/libft
+OBJ_DIR = $(CUR_DIR)/objects
+SRC_DIR	= $(CUR_DIR)/src
 
-SRC_DIR	:= ./src
-INC_DIR	:= ./includes
-OBJ_DIR	:= ./obj
-LIB_DIR	:= .
+SRC		=	main.c		\
+			reader.c 	\
+			solver.c 	\
+			square.c 	\
+			tetrimino.c
 
-SRC		:= main.c \
-		   reader.c \
-		   solver.c \
-		   map.c \
-		   tetrimino.c
-OBJ		:= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+OBJ 	=	$(SRC:.c=.o)
 
-CC		:= gcc
-CFLAGS	:= -Wall -Wextra -Werror -pedantic -std=c99
-OFLAGS	:= -pipe -flto
-CFLAGS	+= $(OFLAGS)
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
+OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ))
 
-L_FT	:= $(LIB_DIR)/libft
+LIBFT_H = -I $(LIB_DIR)/includes
 
-include $(L_FT)/libft.mk
+CC = gcc
+CCFLAGS = -Wall -Werror -Wextra $(LIBFT_H)
 
-all:
+all: $(NAME)
+
+$(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
-	@$(MAKE) -C $(L_FT) --no-print-directory
-	@$(MAKE) $(NAME) --no-print-directory
+	make -C $(CUR_DIR) $(OBJS)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(LIB_INC) -I $(INC_DIR) -o $@ -c $<
+$(LIBFT):
+	@make -C $(LIB_DIR) $(LIBFT)
 
-$(NAME): $(OBJ)
-	$(CC) $(OFLAGS) $(OBJ) $(LIB_LNK) -o $(NAME)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(CC) $(CCFLAGS) -c $< -o $@ 
+
+$(NAME):
+	@make -C $(CUR_DIR) $(LIBFT)
+	@make -C $(CUR_DIR) $(OBJ_DIR)
+	@$(CC) $(CCFLAGS) $(LIBFT_H) $(LIB_DIR)/$(LIBFT) $(OBJS) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	@make -C $(LIB_DIR) fclean
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -f $(NAME)
 
-re:
-	@$(MAKE) fclean --no-print-directory
-	@$(MAKE) all --no-print-directory
-
-relibs:
-	@$(MAKE) -C $(L_FT) re --no-print-directory
-	@$(MAKE) re --no-print-directory
+re: fclean all
 
 norm:
 	@norminette | grep Error
 	
 .PHONY: all clean fclean re norm
+
+# NAME	:= fillit 
+
+# SRC_DIR	:= ./src
+# INC_DIR	:= ./includes
+# OBJ_DIR	:= ./obj
+# LIB_DIR	:= ./libft
+
+# SRC		:= main.c \
+# 		   reader.c \
+# 		   solver.c \
+# 		   square.c \
+# 		   tetrimino.c
+# OBJ		:= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+
+# CC		:= gcc
+# CFLAGS	:= -Wall -Wextra -Werror
+
+# all:
+# 	mkdir -p $(OBJ_DIR)
+# 	@$(MAKE) -C $(LIB_DIR)
+# 	@$(MAKE) $(NAME)
+
+# $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
+# 	$(CC) $(CFLAGS) $(LIB_INC) -I $(INC_DIR) -o $@ -c $<
+
+# $(NAME): $(OBJ)
+# 	$(CC) $(OBJ) $(LIB_LNK) -o $(NAME)
+
+# clean:
+# 	rm -rf $(OBJ_DIR)
+
+# fclean: clean
+# 	rm -rf $(NAME)
+
+# re:
+# 	@$(MAKE) fclean
+# 	@$(MAKE) all
+
+# norm:
+# 	@norminette | grep Error
+	
+# .PHONY: all clean fclean re norm

@@ -6,7 +6,7 @@
 /*   By: ejuana <ejuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 18:09:20 by ejuana            #+#    #+#             */
-/*   Updated: 2020/02/19 18:51:51 by ejuana           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:24:25 by ejuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
 		ft_putstr("file not found\n");
 		return (1);
 	}
-	if ((list = read_tetri(open(argv[1], O_RDONLY))) == NULL)
+	if ((list = read_tetri(open(argv[1], O_RDONLY), 0)) == NULL)
 	{
 		ft_putstr("error\n");
 		return (1);

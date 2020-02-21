@@ -6,7 +6,7 @@
 /*   By: ejuana <ejuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 18:20:06 by ejuana            #+#    #+#             */
-/*   Updated: 2020/02/20 16:57:37 by ejuana           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:56:24 by ejuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_etris
 	char		value;
 }				t_etris;
 
-t_list			*read_tetri(int fd);
+t_list			*read_tetri(int fd, int flag);
 void			print_map(t_map *map);
 void			free_map(t_map *map);
 t_map			*map_new(int size);
