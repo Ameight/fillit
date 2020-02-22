@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cniranye <cniranye@student.42.fr>          +#+  +:+       +#+         #
+#    By: ejuana <ejuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/19 18:14:01 by ejuana            #+#    #+#              #
-#    Updated: 2020/02/22 03:30:56 by cniranye         ###   ########.fr        #
+#    Updated: 2020/02/22 03:39:39 by ejuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
-LIBFT = libft.a
+NAME 	= fillit
+LIBFT 	= libft.a
 
 CUR_DIR = $(shell pwd)
 LIB_DIR = $(CUR_DIR)/libft
@@ -26,13 +26,13 @@ SRC		=	main.c		\
 
 OBJ 	=	$(SRC:.c=.o)
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
-OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ))
+SRCS 	= $(addprefix $(SRC_DIR)/, $(SRC))
+OBJS 	= $(addprefix $(OBJ_DIR)/, $(OBJ))
 
 LIBFT_H = $(LIB_DIR)/includes
-FIL_H = $(CUR_DIR)/includes
+FIL_H 	= $(CUR_DIR)/includes
 
-CC = gcc
+CC 		= gcc
 CCFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
