@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ejuana <ejuana@student.42.fr>              +#+  +:+       +#+         #
+#    By: cniranye <cniranye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/09 14:52:16 by ejuana            #+#    #+#              #
-#    Updated: 2020/02/19 18:40:20 by ejuana           ###   ########.fr        #
+#    Updated: 2020/02/22 03:27:31 by cniranye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,9 @@ SRC_FC 			+=	ft_lstnew.c			\
 					ft_lstdel.c			\
 					ft_lstadd.c			\
 					ft_lstiter.c		\
-					ft_lstmap.c			
+					ft_lstmap.c			\
+					ft_lstrev.c			\
+					ft_lstcount.c
 
 SRC_FC			+=	ft_swap_int.c		\
 					ft_len_char.c		\
