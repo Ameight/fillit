@@ -6,7 +6,7 @@
 #    By: ejuana <ejuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/19 18:14:01 by ejuana            #+#    #+#              #
-#    Updated: 2020/02/22 03:39:39 by ejuana           ###   ########.fr        #
+#    Updated: 2020/02/26 02:39:12 by ejuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ LIB_DIR = $(CUR_DIR)/libft
 OBJ_DIR = $(CUR_DIR)/objects
 SRC_DIR	= $(CUR_DIR)/src
 
-SRC		=	main.c		\
-			reader.c 	\
-			solver.c 	\
-			square.c 	\
-			termino.c
+SRC		=	main.c			\
+			reader.c 		\
+			solver.c 		\
+			map_placer.c 	\
+			tet_alloc.c
 
 OBJ 	=	$(SRC:.c=.o)
 
